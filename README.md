@@ -61,8 +61,6 @@ Where the Gulp Tasks are:
 
 ## Primary Gulp tasks
 
-The gulp tasks have two kinds, ones that are destined to be run locally (or on DEV) and those that should be run on production (QA, STG or PRD).
-
 There are various things that are changed when running in each of these modes.
 
 Primary examples of which are:
