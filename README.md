@@ -52,7 +52,6 @@ Where the Gulp Tasks are:
 | default-start | Configures some global variables for gulp that determine that the build is a `debug` build where the output includes sourcemaps and skips certain production level processes |
 | build-start | Configures some global variables for gulp that determine that the build is a `production` level build, where the output does not include sourcemaps and runs some production level processes |
 | watch-start | Configures some global variables for gulp that determine that the build is a `watch` level build that also includes sourcemaps |
-This process was dropped when we started getting into ordering where there are numerous endpoints. |
 | eslint | Runs `eslint` javascript syntax and code style tester |
 | bowerFonts | Copies fonts from bowerFonts array in config to `public/fonts` |
 | fonts | Copies `resources/fonts` to `public/fonts` |
