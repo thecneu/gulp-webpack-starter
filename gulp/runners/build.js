@@ -1,8 +1,5 @@
 var gulp = require('gulp'),
-    config = require('../config')(),
-    gutil = require('gulp-util'),
-    gulpSequence = require('gulp-sequence')
-;
+    gulpSequence = require('gulp-sequence');
 
 /**
  * Build Task: gulp build
