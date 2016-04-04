@@ -2,12 +2,18 @@
 
 ## 
 
-Basic opinionated gulp webpack starter. Webpack can be run solo, but some people like using gulp, and like having other tasks that webpack does not accomplish in their builds. I like gulp.
+Basic gulp webpack starter. Webpack can be run solo, but some people like using gulp, and like having other tasks that webpack does not accomplish in their builds. I like gulp.... sometimes...
 
-TODO:
+I am not fully vested in Webpack yet as the sole bundler/loader. I like to leave some tasks accomplished with Gulp and let Webpack be used mainly for its loader and bundler.
 
-Fix Browsersync
-Fix Eslint
+**Features:**
+
+* Webpack to bundle main/vendor js and browser components
+* Babel to use ES6
+* SCSS Compiling, can be both inside Webpack bundle using sass-loader, and outside (for reset and critical CSS) if desired
+* ESLint for JS syntax and style
+* Bower integration
+* Static Asset copy via "common" task (when not coming from inside Webpack)
 
 ## Gulp
 
