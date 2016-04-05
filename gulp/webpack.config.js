@@ -50,7 +50,10 @@ module.exports = function(config) {
         new BowerWebpackPlugin({
             excludes: /.*\.less/
         }),
-        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.js')
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.js'
+        })
     ];
 
     if (!global.debug) {

@@ -92,7 +92,8 @@ export default function config() {
             paths: [
                 'gulpfile.js',
                 './gulp/**/*.js',
-                src + '/scripts/**/' + extensionGlobs.js
+                src + '/scripts/**/' + extensionGlobs.js,
+                '!' + src + '/scripts/**/' + '**_scsslint_tmp**.js'
             ]
         },
 
