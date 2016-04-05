@@ -50,13 +50,11 @@ Where the Gulp Tasks are:
 
 | Task  | Description |
 |---|---|
-| default | The default gulp task, will run `default-start` then `bundle` |
-| build | The production level gulp task, will run `build-start` then bundle |
+| default | The default gulp task, will run `bundle` |
+| build | The production level gulp task, will run `bundle` |
 | bundle | Comprises all of the partial tasks below that are included in the `bundling` process |
 | watch | Starts gulp watch, which will rerun gulp tasks on changes to files |
 | clean | Cleans the public directory before a new bundle |
-| default-start | Configures some global variables for gulp that determine that the build is a `debug` build where the output includes sourcemaps and skips certain production level processes |
-| build-start | Configures some global variables for gulp that determine that the build is a `production` level build, where the output does not include sourcemaps and runs some production level processes |
 | watch-start | Configures some global variables for gulp that determine that the build is a `watch` level build that also includes sourcemaps |
 | eslint | Runs `eslint` javascript syntax and code style tester |
 | bowerFonts | Copies fonts from bowerFonts array in config to `public/fonts` |
