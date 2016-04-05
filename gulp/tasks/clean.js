@@ -1,8 +1,8 @@
-var gulp = require('gulp'),
-    config = require('../config')(),
-    del = require('del');
+'use strict';
 
-gulp.task('clean', function(cb) {
-    del.sync(config.clean.paths);
-    cb();
+import {gulp, plugins, config} from '../plugins';
+
+gulp.task('clean', (done) => {
+    plugins.del.sync(config.clean.paths);
+    done();
 });

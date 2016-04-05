@@ -1,24 +1,18 @@
-var gulp = require('gulp'),
-    config = require('../config')(),
-    sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer'),
-    sourcemaps = require('gulp-sourcemaps'),
-    handleErrors = require('../util/handleErrors'),
-    gif = require('gulp-if'),
-    debug = require('gulp-debug'),
-    cleanCSS = require('gulp-clean-css'),
-    browserSync = require('browser-sync');
+'use strict';
 
-gulp.task('sass', function() {
+import {gulp, plugins, config} from '../plugins';
+import {onError} from '../util/errorHandler';
+
+gulp.task('sass', () => {
     gulp.src(config.sass.paths)
-        .pipe(gif(config.debugPaths, debug({title: 'FOUND (sass):'})))
-        .pipe(sourcemaps.init())
-        .pipe(sass(config.sass.settings).on('error', handleErrors))
-        .pipe(autoprefixer(config.sass.autoprefixer))
-        .pipe(gif(global.debug, sourcemaps.write('.')))
-        .pipe(gif(!global.debug, cleanCSS(config.sass.clean)))
+        .pipe(plugins.gif(config.debugPaths, plugins.debug({title: 'FOUND (sass):'})))
+        .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.sass(config.sass.settings))
+        .on('error', onError)
+        .pipe(plugins.autoprefixer(config.sass.autoprefixer))
+        .pipe(plugins.gif(global.debug, plugins.sourcemaps.write('.')))
+        .pipe(plugins.gif(!global.debug, plugins.cleanCss(config.sass.clean)))
         .pipe(gulp.dest(config.dist + '/styles'))
-        .pipe(browserSync.stream({reload: true}))
-        .on('error', handleErrors)
+        .pipe(plugins.browserSync.stream({reload: true}))
     ;
 });

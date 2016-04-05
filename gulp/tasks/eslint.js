@@ -1,13 +1,12 @@
-var gulp = require('gulp'),
-    config = require('../config')(),
-    eslint = require('gulp-eslint'),
-    gif = require('gulp-if'),
-    handleErrors = require('../util/handleErrors');
+'use strict';
 
-gulp.task('eslint', function() {
+import {gulp, plugins, config} from '../plugins';
+import {onError} from '../util/errorHandler';
+
+gulp.task('eslint', () => {
     return gulp.src(config.eslint.paths)
-        .pipe(eslint())
-        .pipe(eslint.formatEach('stylish', process.stderr))
-        .pipe(gif(!global.debug, eslint.failOnError()))
-        .on('error', handleErrors);
+        .pipe(plugins.eslint())
+        .pipe(plugins.eslint.formatEach('stylish', process.stderr))
+        .pipe(plugins.eslint.failAfterError())
+        .on('error', onError);
 });

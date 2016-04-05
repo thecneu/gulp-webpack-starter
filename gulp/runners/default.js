@@ -1,11 +1,8 @@
-var gulp = require('gulp'),
-    gulpSequence = require('gulp-sequence');
+'use strict';
+
+import {gulp, plugins} from '../plugins';
 
 /**
  * Default Task: gulp
  */
-gulp.task('default', gulpSequence('default-start', 'bundle', 'webpack'));
-gulp.task('default-start', function(cb) {
-    global.debug = true;
-    cb();
-});
+gulp.task('default', plugins.sequence('bundle'));

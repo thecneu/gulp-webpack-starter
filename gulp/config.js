@@ -1,15 +1,17 @@
-var cwd = process.cwd(),
-    path = require('path');
+'use strict';
 
-module.exports = function() {
+import path from 'path';
 
-    var basePath = cwd;
-    var src = path.join(cwd, 'resources');
-    var dist = path.join(cwd, 'public');
-    var bowerRoot = path.join(cwd, 'bower_components');
-    var nodeRoot = path.join(cwd, 'node_modules');
+const cwd = process.cwd();
 
-    var extensionGlobs = {
+export default function config() {
+    let basePath = cwd;
+    let src = path.join(cwd, 'resources');
+    let dist = path.join(cwd, 'public');
+    let bowerRoot = path.join(cwd, 'bower_components');
+    let nodeRoot = path.join(cwd, 'node_modules');
+
+    let extensionGlobs = {
         fonts: '*.{ttf,woff,eof,svg,woff2,eot}',
         images: '*.{jpg,png,gif,svg}',
         videos: '*.{mp4,mov,ogv,webm}',
@@ -120,4 +122,4 @@ module.exports = function() {
         }
 
     };
-};
+}

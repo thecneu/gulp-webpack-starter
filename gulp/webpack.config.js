@@ -1,16 +1,17 @@
-var webpack = require('webpack'),
-    path = require('path'),
-    BowerWebpackPlugin = require('bower-webpack-plugin'),
-    UglifyJsPlugin = webpack.optimize.UglifyJsPlugin,
-    _ = require('lodash');
+'use strict';
+
+import webpack from 'webpack';
+import BowerWebpackPlugin from 'bower-webpack-plugin';
+import path from 'path';
+import _ from 'lodash';
 
 module.exports = function(config) {
-    var devConfig = {
+    let devConfig = {
         devtool: 'source-map',
         debug: true
     };
 
-    var modules = {
+    let modules = {
         resolve: {
             root: config.src,
             alias: {
@@ -42,7 +43,7 @@ module.exports = function(config) {
         }
     };
 
-    var plugins = [
+    let webpackPlugins = [
         new webpack.ProvidePlugin({
             '$': 'jquery'
         }),
@@ -53,14 +54,14 @@ module.exports = function(config) {
     ];
 
     if (!global.debug) {
-        plugins.push(new UglifyJsPlugin(config.uglify));
+        webpackPlugins.push(new webpack.optimize.UglifyJsPlugin(config.uglify));
     }
 
     return _.extend(
         {},
         modules,
         {
-            plugins: plugins
+            plugins: webpackPlugins
         },
         global.debug ? devConfig : {}
     );

@@ -1,19 +1,17 @@
-var gulp = require('gulp'),
-    config = require('../config')(),
-    webpackStream = require('webpack-stream'),
-    named = require('vinyl-named'),
-    gif = require('gulp-if'),
-    debug = require('gulp-debug'),
-    browserSync = require('browser-sync');
+'use strict';
 
-gulp.task('webpack', ['eslint'], function() {
-    var webpackConfig = require('../webpack.config.js')(config);
+import {gulp, plugins, config} from '../plugins';
+import {onError} from '../util/errorHandler';
+
+gulp.task('webpack', ['eslint'], () => {
+    let webpackConfig = require('../webpack.config.js')(config);
     return gulp.src(config.webpack.paths)
-        .pipe(gif(config.debugPaths, debug({title: 'FOUND (js):'})))
-        .pipe(debug({title: 'Bundling:'}))
-        .pipe(named())
-        .pipe(webpackStream(webpackConfig))
+        .pipe(plugins.gif(config.debugPaths, plugins.debug({title: 'FOUND (js):'})))
+        .pipe(plugins.debug({title: 'Bundling:'}))
+        .pipe(plugins.vinylNamed())
+        .pipe(plugins.webpackStream(webpackConfig))
+        .on('error', onError)
         .pipe(gulp.dest(config.dist + '/scripts'))
-        .pipe(browserSync.stream({reload: true}))
+        .pipe(plugins.browserSync.stream({reload: true}))
     ;
 });

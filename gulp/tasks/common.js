@@ -1,30 +1,28 @@
-var gulp = require('gulp'),
-    config = require('../config')(),
-    browserSync = require('browser-sync'),
-    gif = require('gulp-if'),
-    debug = require('gulp-debug');
+'use strict';
 
-gulp.task('fonts', function() {
+import {gulp, plugins, config} from '../plugins';
+
+gulp.task('fonts', () => {
     return gulp.src(config.fonts.paths)
-        .pipe(gif(config.debugPaths, debug({title: 'FOUND (font):'})))
+        .pipe(plugins.gif(config.debugPaths, plugins.debug({title: 'FOUND (font):'})))
         .pipe(gulp.dest(config.dist + '/fonts'))
-        .pipe(browserSync.stream({reload: true}))
+        .pipe(plugins.browserSync.stream({reload: true}))
     ;
 });
 
-gulp.task('images', function() {
+gulp.task('images', () => {
     return gulp.src(config.images.paths)
-        .pipe(gif(config.debugPaths, debug({title: 'FOUND (image):'})))
+        .pipe(plugins.gif(config.debugPaths, plugins.debug({title: 'FOUND (image):'})))
         .pipe(gulp.dest(config.dist + '/images'))
-        .pipe(browserSync.stream({reload: true}))
+        .pipe(plugins.browserSync.stream({reload: true}))
     ;
 });
 
-gulp.task('bowerFonts', function() {
+gulp.task('bowerFonts', () => {
     return gulp.src(config.bower.fonts)
-        .pipe(gif(config.debugPaths, debug({title: 'FOUND (bower font):'})))
+        .pipe(plugins.gif(config.debugPaths, plugins.debug({title: 'FOUND (bower font):'})))
         .pipe(gulp.dest(config.dist + '/fonts'))
-        .pipe(browserSync.stream({reload: true}))
+        .pipe(plugins.browserSync.stream({reload: true}))
     ;
 });
 
