@@ -11,11 +11,26 @@ gulp.task('watch-start', (done) => {
     plugins.util.log(plugins.util.colors.bgGreen('Watching for changes...'));
     plugins.browserSync.init(config.browserSync);
 
-    gulp.watch(config.dist + '/index.html', plugins.browserSync.reload);
-    gulp.watch(config.src + '/scripts/**/' + config.extensionGlobs.js, ['webpack'], {interval: 500});
-    gulp.watch(config.src + '/fonts/' + config.extensionGlobs.fonts, ['fonts'], {interval: 500});
-    gulp.watch(config.src + '/images/' + config.extensionGlobs.images, ['images'], {interval: 500});
-    gulp.watch(config.src + '/styles/' + config.extensionGlobs.sass, ['sass'], {interval: 500});
+    plugins.watch(config.dist + '/index.html', (cb) => {
+        plugins.browserSync.reload();
+        cb();
+    });
+
+    plugins.watch(config.src + '/scripts/**/' + config.extensionGlobs.js, () => {
+        return gulp.start('webpack');
+    });
+
+    plugins.watch(config.src + '/fonts/' + config.extensionGlobs.fonts, () => {
+        return gulp.start('fonts');
+    });
+
+    plugins.watch(config.src + '/images/' + config.extensionGlobs.images, () => {
+        return gulp.start('images');
+    });
+
+    plugins.watch(config.src + '/styles/' + config.extensionGlobs.sass, () => {
+        return gulp.start('sass');
+    });
 
     done();
 });
