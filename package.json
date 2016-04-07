@@ -55,6 +55,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "require-dir": "^0.3.0",
     "style-loader": "^0.13.1",
+    "through2": "^2.0.1",
     "vinyl-named": "^1.1.0",
     "wallaby-webpack": "0.0.21",
     "webpack": "^1.12.14",
