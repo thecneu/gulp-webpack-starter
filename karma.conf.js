@@ -3,7 +3,7 @@
 require('babel-register');
 
 const _gulpConfig = require('./gulp/gulp.config');
-const _webpackConfig = require('./webpack.config');
+const _webpackConfig = require('./webpack.config.babel');
 
 const gulpConfig = _gulpConfig.default();
 const webpackConfig = _webpackConfig.default(gulpConfig);

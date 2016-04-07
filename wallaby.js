@@ -4,7 +4,7 @@ require('babel-register');
 
 const wallabyWebpack = require('wallaby-webpack');
 const _gulpConfig = require('./gulp/gulp.config');
-const _webpackConfig = require('./webpack.config');
+const _webpackConfig = require('./webpack.config.babel');
 const path = require('path');
 
 const gulpConfig = _gulpConfig.default();
