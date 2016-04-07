@@ -3,9 +3,11 @@
 import webpack from 'webpack';
 import BowerWebpackPlugin from 'bower-webpack-plugin';
 import path from 'path';
-import _ from 'lodash';
 
-module.exports = function(config) {
+const cwd = process.cwd();
+
+export default (config) => {
+
     let devConfig = {
         devtool: 'source-map',
         debug: true
@@ -13,11 +15,17 @@ module.exports = function(config) {
 
     let modules = {
         resolve: {
-            root: config.src,
+            root: 'resources',
             alias: {
-                bower: config.bowerRoot,
-                templates: path.join(config.src, 'views')
-            }
+                bower: path.join(cwd, 'bower_components'),
+                scripts: 'scripts',
+                templates: 'views'
+            },
+            extensions: ['', '.js'],
+            modulesDirectories: [
+                'bower_components',
+                'node_modules'
+            ]
         },
 
         module: {
@@ -38,12 +46,12 @@ module.exports = function(config) {
             ],
 
             noParse: [
-                path.join(config.nodeRoot, 'jquery')
+                path.join(path.join(cwd, 'node_modules'), 'jquery')
             ]
         }
     };
 
-    let webpackPlugins = [
+    var webpackPlugins = [
         new webpack.ProvidePlugin({
             '$': 'jquery'
         }),
@@ -60,7 +68,7 @@ module.exports = function(config) {
         webpackPlugins.push(new webpack.optimize.UglifyJsPlugin(config.uglify));
     }
 
-    return _.extend(
+    return Object.assign(
         {},
         modules,
         {

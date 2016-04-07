@@ -1,5 +1,6 @@
-const argv = require('yargs')
-    .describe('Gulp Tasks')
+import yargs from 'yargs';
+
+let argv = yargs.describe('Gulp Tasks')
     .usage('Usage: $0 --fatal=[warn|error|fatal|off]')
     .alias('fatal', 'The log level to exit a build on')
     .help('h')

@@ -1,6 +1,6 @@
 import _gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
-import _config from './config';
+import _config from './gulp.config';
 
 export const gulp = _gulp;
 

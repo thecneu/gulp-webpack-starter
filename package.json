@@ -42,16 +42,27 @@
     "gulp-watch": "^4.3.5",
     "html-loader": "^0.4.3",
     "imports-loader": "^0.6.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-spec-reporter": "0.0.25",
+    "karma-webpack": "^1.7.0",
     "lodash": "^4.8.1",
     "node-notifier": "^4.5.0",
+    "phantomjs-polyfill": "0.0.2",
+    "phantomjs-prebuilt": "^2.1.7",
     "require-dir": "^0.3.0",
     "style-loader": "^0.13.1",
     "vinyl-named": "^1.1.0",
+    "wallaby-webpack": "0.0.21",
     "webpack": "^1.12.14",
     "webpack-stream": "https://github.com/jmurzy/webpack-stream.git",
     "yargs": "^4.3.2"
   },
   "dependencies": {
+    "babel-polyfill": "^6.7.4",
     "jquery": "^2.2.2"
   }
 }

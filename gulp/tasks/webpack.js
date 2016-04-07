@@ -2,9 +2,12 @@
 
 import {gulp, plugins, config} from '../plugins';
 import {onError} from '../util/errorHandler';
+import _webpackConfig from '../../webpack.config.js';
+
+const webpackConfig = _webpackConfig(config);
 
 gulp.task('webpack', ['eslint'], () => {
-    let webpackConfig = require('../webpack.config.js')(config);
+
     return gulp.src(config.webpack.paths)
         .pipe(plugins.gif(config.debugPaths, plugins.debug({title: 'FOUND (js):'})))
         .pipe(plugins.debug({title: 'Bundling:'}))

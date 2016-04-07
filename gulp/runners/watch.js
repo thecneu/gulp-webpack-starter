@@ -16,7 +16,10 @@ gulp.task('watch-start', (done) => {
         cb();
     });
 
-    plugins.watch(config.src + '/scripts/**/' + config.extensionGlobs.js, () => {
+    plugins.watch([
+        config.src + '/scripts/**/' + config.extensionGlobs.js,
+        '!' + config.src + '/scripts/**/' + '**_scsslint_tmp**.js'
+    ], () => {
         return gulp.start('webpack');
     });
 
