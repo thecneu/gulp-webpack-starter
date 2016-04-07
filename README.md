@@ -14,6 +14,7 @@ I am not fully vested in Webpack yet as the sole bundler/loader. I like to leave
 * ESLint for JS syntax and style
 * Bower integration
 * Static Asset copy via "common" task (when not coming from inside Webpack)
+* Unit testing with Jasmine, with Karma as a runner, and Wallaby.js for integration with Editors
 
 ## Gulp
 
@@ -56,6 +57,8 @@ Where the Gulp Tasks are:
 | watch | Starts gulp watch, which will rerun gulp tasks on changes to files |
 | clean | Cleans the public directory before a new bundle |
 | watch-start | Configures some global variables for gulp that determine that the build is a `watch` level build that also includes sourcemaps |
+| test | Runs `karma` to run unit tests |
+| tdd | Runs `karma tdd` to determine test coverage |
 | eslint | Runs `eslint` javascript syntax and code style tester |
 | bowerFonts | Copies fonts from bowerFonts array in config to `public/fonts` |
 | fonts | Copies `resources/fonts` to `public/fonts` |
