@@ -11,9 +11,8 @@ gulp.task('watch-start', (done) => {
     plugins.util.log(plugins.util.colors.bgGreen('Watching for changes...'));
     plugins.browserSync.init(config.browserSync);
 
-    plugins.watch(config.dist + '/index.html', (cb) => {
+    plugins.watch(config.dist + '/index.html', () => {
         plugins.browserSync.reload();
-        cb();
     });
 
     plugins.watch([
