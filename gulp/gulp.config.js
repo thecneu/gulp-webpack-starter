@@ -19,7 +19,7 @@ export default function config() {
         js: '*.{js,js}',
         css: '*.{css,css}',
         svg: '*.svg',
-        swf: '*.swf'
+        views: '*.html'
     };
 
     return {
@@ -44,6 +44,12 @@ export default function config() {
 
         bower: {
             fonts: []
+        },
+
+        views: {
+            paths: [
+                src + '/views/**/' + extensionGlobs.views
+            ]
         },
 
         fonts: {

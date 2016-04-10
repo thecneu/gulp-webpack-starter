@@ -11,15 +11,15 @@ gulp.task('watch-start', (done) => {
     plugins.util.log(plugins.util.colors.bgGreen('Watching for changes...'));
     plugins.browserSync.init(config.browserSync);
 
-    plugins.watch(config.dist + '/index.html', () => {
-        plugins.browserSync.reload();
-    });
-
     plugins.watch([
         config.src + '/scripts/**/' + config.extensionGlobs.js,
         '!' + config.src + '/scripts/**/' + '**_scsslint_tmp**.js'
     ], () => {
         return gulp.start('webpack');
+    });
+
+    plugins.watch(config.src + '/views/' + config.extensionGlobs.views, () => {
+        return gulp.start('views');
     });
 
     plugins.watch(config.src + '/fonts/' + config.extensionGlobs.fonts, () => {
