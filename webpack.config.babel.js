@@ -8,12 +8,7 @@ const cwd = process.cwd();
 
 export default (config) => {
 
-    let devConfig = {
-        devtool: 'source-map',
-        debug: true
-    };
-
-    let modules = {
+    let base = {
         resolve: {
             root: 'resources',
             alias: {
@@ -28,13 +23,19 @@ export default (config) => {
             ]
         },
 
+        stats: {
+            children: false
+        }
+    };
+
+    let devConfig = {
+        devtool: 'source-map',
+        debug: true
+    };
+
+    let loaders = {
         module: {
             loaders: [
-                {test: /\.(woff|svg|ttf|eot)([\?]?.*)$/, loader: 'file-loader?name=[name].[ext]'},
-                {
-                    test: /\.html$/,
-                    loader: 'html'
-                },
                 {
                     test: /\.js?$/,
                     exclude: /(node_modules|bower_components)/,
@@ -51,18 +52,20 @@ export default (config) => {
         }
     };
 
-    var webpackPlugins = [
-        new webpack.ProvidePlugin({
+    let webpackPlugins = {
+        plugins: [
+            new webpack.ProvidePlugin({
             '$': 'jquery'
-        }),
-        new BowerWebpackPlugin({
-            excludes: /.*\.less/
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.js'
-        })
-    ];
+            }),
+            new BowerWebpackPlugin({
+                excludes: /.*\.less/
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                filename: 'vendor.js'
+            })
+        ]
+    };
 
     if (!global.debug) {
         webpackPlugins.push(new webpack.optimize.UglifyJsPlugin(config.uglify));
@@ -70,10 +73,9 @@ export default (config) => {
 
     return Object.assign(
         {},
-        modules,
-        {
-            plugins: webpackPlugins
-        },
+        base,
+        loaders,
+        webpackPlugins,
         global.debug ? devConfig : {}
     );
 

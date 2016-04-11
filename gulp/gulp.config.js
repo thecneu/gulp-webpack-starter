@@ -15,9 +15,9 @@ export default function config() {
         fonts: '*.{ttf,woff,eof,svg,woff2,eot}',
         images: '*.{jpg,png,gif,svg}',
         videos: '*.{mp4,mov,ogv,webm}',
-        sass: '*.{scss,sass,scss,sass}',
-        js: '*.{js,js}',
-        css: '*.{css,css}',
+        sass: '*.{scss,sass}',
+        js: '*.{js}',
+        css: '*.{css}',
         svg: '*.svg',
         views: '*.html'
     };
