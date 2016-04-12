@@ -68,7 +68,7 @@ export default (config) => {
     };
 
     if (!global.debug) {
-        webpackPlugins.push(new webpack.optimize.UglifyJsPlugin(config.uglify));
+        webpackPlugins.plugins.push(new webpack.optimize.UglifyJsPlugin(config.uglify));
     }
 
     return Object.assign(
