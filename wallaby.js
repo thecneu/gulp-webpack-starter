@@ -8,12 +8,14 @@ const _webpackConfig = require('./webpack.config.babel');
 const path = require('path');
 
 const gulpConfig = _gulpConfig.default();
-const webpackConfig = _webpackConfig.default(gulpConfig);
+const webpackConfig = _webpackConfig.default(gulpConfig, 'test');
 
 module.exports = (wallaby) => {
     let wallabyWebpackConfig = {};
 
-    Object.assign(wallabyWebpackConfig, webpackConfig.module, {
+    Object.assign(wallabyWebpackConfig, {
+        module: webpackConfig.module,
+        plugins: webpackConfig.plugins,
         resolve: {
             root: [
                 path.join(wallaby.projectCacheDir, 'resources')
@@ -22,7 +24,7 @@ module.exports = (wallaby) => {
         }
     });
 
-    //console.log(wallabyWebpackConfig);
+    //console.log(JSON.stringify(wallabyWebpackConfig, null, 4));
 
     let wallabyPostprocessor = wallabyWebpack(wallabyWebpackConfig);
 
@@ -32,7 +34,7 @@ module.exports = (wallaby) => {
             {pattern: 'resources/scripts/**/*.js', load: false}
         ],
         tests: [
-            {pattern: 'spec/**/*-spec.js', load: false}
+            {pattern: 'test/**/*-spec.js', load: false}
         ],
         compilers: {
             '**/*.js': wallaby.compilers.babel()

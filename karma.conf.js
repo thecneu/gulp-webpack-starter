@@ -6,18 +6,11 @@ const _gulpConfig = require('./gulp/gulp.config');
 const _webpackConfig = require('./webpack.config.babel');
 
 const gulpConfig = _gulpConfig.default();
-const webpackConfig = _webpackConfig.default(gulpConfig);
+const webpackConfig = _webpackConfig.default(gulpConfig, 'test');
 
 module.exports = (config) => {
 
-    let karmaWebpackConfig = {};
-
-    Object.assign(karmaWebpackConfig, {
-        module: webpackConfig.module,
-        resolve: webpackConfig.resolve
-    });
-
-    //console.log(karmaWebpackConfig);
+    console.log(JSON.stringify(webpackConfig, null, 4));
 
     config.set({
         basePath: '',
@@ -30,15 +23,13 @@ module.exports = (config) => {
         browsers: ['PhantomJS'/*, 'Chrome'*/],
         frameworks: ['jasmine'],
         files: [
-            'resources/scripts/*.js',
-            'spec/**/*.js'
+            './test/index.js'
         ],
         exclude: [],
         preprocessors: {
-            'spec/*.js': ['webpack'],
-            'resources/scripts/**/*.js': ['webpack']
+            './test/index.js': ['webpack']
         },
-        webpack: karmaWebpackConfig,
+        webpack: webpackConfig,
         webpackMiddleware: {
             stats: 'errors-only'
         },

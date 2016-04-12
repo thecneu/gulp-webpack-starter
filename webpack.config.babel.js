@@ -6,11 +6,10 @@ import path from 'path';
 
 const cwd = process.cwd();
 
-export default (config) => {
-
+export default (config, context) => {
     let base = {
         resolve: {
-            root: 'resources',
+            root: config.src,
             alias: {
                 bower: path.join(cwd, 'bower_components'),
                 scripts: 'scripts',
@@ -59,15 +58,18 @@ export default (config) => {
             }),
             new BowerWebpackPlugin({
                 excludes: /.*\.less/
-            }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                filename: 'vendor.js'
             })
         ]
     };
 
-    if (!global.debug) {
+    if (!context || context !== 'test') {
+        webpackPlugins.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.js'
+        }));
+    }
+
+    if (!context || context !== 'test' && !global.debug) {
         webpackPlugins.plugins.push(new webpack.optimize.UglifyJsPlugin(config.uglify));
     }
 
