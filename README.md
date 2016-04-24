@@ -2,51 +2,38 @@
 
 ## 
 
-Basic gulp webpack starter. Webpack can be run solo, but some people like using gulp, and like having other tasks that webpack does not accomplish in their builds. I like gulp.... sometimes...
+Basic gulp webpack starter. Webpack can be run solo, but some people like using gulp, and like having other tasks that webpack does not accomplish in their builds.
 
-I am not fully vested in Webpack yet as the sole bundler/loader. I like to leave some tasks accomplished with Gulp and let Webpack be used mainly for its loader and bundler.
+I am not fully invested in Webpack yet as the sole bundler/loader. I like to leave some tasks accomplished with Gulp and let Webpack be used mainly for its loader and bundler.
 
 **Features:**
 
 * Webpack to bundle main/vendor js and browser components
-* Babel to use ES6
-* SCSS Compiling, can be both inside Webpack bundle using sass-loader, and outside (for reset and critical CSS) if desired
+* Use ES6 with Babel
+* SCSS Compilation, can be both inside Webpack bundle using sass-loader, and outside (for reset and critical CSS) if desired
 * ESLint for JS syntax and style
 * Bower integration
 * Static Asset copy via "common" task (when not coming from inside Webpack)
 
-## Gulp
-
-Gulp requires some system configuration:
-
-Install NPM, if on a Mac you can use the [NPM installer](https://nodejs.org/en/), preferable to download the LTS
-version 4.3.X, but one can experiment with 5.0+. This can also be installed with [Homebrew](http://brew.sh/) then
-`brew install node`.
+## Requirements
+ * Node & NPM
+ * Gulp
+ * Bower
+ * ESLint
 
 Install some global NPM packages:
 
 ```
-npm install -g gulp
-npm install -g bower
-npm install -g eslint
+npm install -g gulp bower eslint webpack
 ```
 
 Then you can install the Gulp packages local to this project, from the root of the project (near the `gulpfile.js`) run:
 
 ```
-npm install
-bower install
+npm install && bower install
 ```
 
-Then you can run Gulp Tasks.
-
-Run with:
-
-```
-gulp <TASK>
-```
-
-Where the Gulp Tasks are:
+The Gulp Tasks are:
 
 | Task  | Description |
 |---|---|
@@ -69,10 +56,10 @@ There are various things that are changed when running in each of these modes.
 
 Primary examples of which are:
 
-* Whether to minify and mangle JS
-* Whether to include sourcemaps for the minfied or mangled Javascript
-* Whether to include sourcemaps for the compiled CSS
-* Whether to fail and exit on error of ESLINT (used in production builds)
+* Minifying and mangling JS
+* Generating sourcemaps for the processed Javascript
+* Including sourcemaps for the compiled CSS
+* Behavior on error of ESLINT (used in production builds)
 
 There are other aspects of the gulp run that are changed by global variables.
 

@@ -50,6 +50,5 @@
     "yargs": "^4.3.2"
   },
   "dependencies": {
-    "jquery": "^2.2.2"
   }
 }
